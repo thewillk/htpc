@@ -1,0 +1,39 @@
+@import 'reset';
+
+$background-color: #666666;
+$other-background-color: #efefef;
+$standard-copy-color: #ffffff;
+
+$bevel-border-dark-color: #222222;
+$bevel-border-light-color: #ffffff;
+
+@mixin bevel-border( $orientation:'vertical' ) {
+  @if $orientation == vertical {
+    border-left: 1px solid $bevel-border-dark-color;
+    border-right: 1px solid $bevel-border-light-color;
+  } @else if $orientation == horizontal {
+    border-top: 1px solid $bevel-border-dark-color;
+    border-bottom: 1px solid $bevel-border-light-color;
+  }
+}
+
+* {
+  &, &:after, &:before { box-sizing: border-box; }
+}
+
+body {
+  background-color: $other-background-color;
+  font-family: sans-serif;
+}
+
+.menu {
+  width: 100%;
+  > li {
+    background: $background-color;
+    color: $standard-copy-color;
+    line-height: 44px;
+    padding: 0 20px;
+    cursor: pointer;
+    @include bevel-border( horizontal );
+  }
+}

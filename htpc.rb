@@ -1,7 +1,13 @@
 require 'sinatra'
 require 'haml'
+require 'sass'
 
 require './models/mac'
+
+configure do
+  set :haml, {:format => :html5}
+  set :scss, {:style => :compact, :debug_info => false}
+end
 
 ALLOWED_APPS = ['Hulu Desktop', 'Plex', 'Sonos']
 
@@ -16,6 +22,8 @@ def process_app(id, &block)
 end
 
 get '/' do
+  @page_title = "Will's HTPC"
+  haml :index
 end
 
 post '/open/:id' do
@@ -38,4 +46,9 @@ end
 post '/keypress/:key' do
   # should sanitize input; easy injection attack here
   Mac.send_key params[:key].to_sym
+end
+
+get '/:name.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  scss(:"stylesheets/#{params[:name]}" )
 end

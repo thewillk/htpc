@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    %title
+      = @page_title
+    %link{:href=>'/htpc.css', :type=>'text/css', :rel=>'stylesheet'}
+  %body
+    = yield
+    %script{:src=>'/vendor/jquery-1.8.3.js', :type=>'text/javascript'}
+    %script{:src=>'/htpc.js', :type=>'text/javascript'}
