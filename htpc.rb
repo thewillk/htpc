@@ -10,6 +10,7 @@ configure do
 end
 
 ALLOWED_APPS = ['Hulu Desktop', 'Plex', 'Sonos']
+AVAILABLE_MODIFIERS = [:control, :command, :shift, :option]
 
 def process_app(id, &block)
   requested_app_name = id.split('_').map {|w| w.capitalize }.join(' ')
@@ -19,6 +20,14 @@ def process_app(id, &block)
   else
     403
   end
+end
+
+def modifiers_from_params
+  modifiers = {}
+  AVAILABLE_MODIFIERS.each do |modifier|
+    modifiers[modifier] = true if params[modifier]=='true'
+  end
+  modifiers
 end
 
 get '/' do
@@ -40,12 +49,12 @@ end
 
 post '/type/:keys' do
   # should sanitize input; easy injection attack here
-  Mac.send_key params[:keys]
+  Mac.send_key params[:keys], modifiers_from_params
 end
 
 post '/keypress/:key' do
   # should sanitize input; easy injection attack here
-  Mac.send_key params[:key].to_sym
+  Mac.send_key params[:key].to_sym, modifiers_from_params
 end
 
 get '/:name.css' do
