@@ -1,7 +1,15 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    UPnP (1.2.0)
+      builder
+      soap4r
+    akami (1.2.0)
+      gyoku (>= 0.4.0)
+      nokogiri (>= 1.4.0)
+    builder (3.1.4)
     chunky_png (1.2.6)
+    coderay (1.0.8)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -9,29 +17,58 @@ GEM
     daemons (1.1.9)
     eventmachine (1.0.0)
     fssm (0.2.9)
+    gyoku (1.0.0)
+      builder (>= 2.1.2)
     haml (3.1.7)
-    rack (1.4.3)
+    httpclient (2.3.2)
+    httpi (2.0.0)
+      rack
+    method_source (0.8.1)
+    nokogiri (1.5.6)
+    nori (2.0.3)
+    pry (0.9.11.4)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    rack (1.5.0)
     rack-protection (1.3.2)
       rack
     sass (3.2.4)
+    savon (2.0.3)
+      akami (~> 1.2.0)
+      builder (>= 2.1.2)
+      gyoku (~> 1.0.0)
+      httpi (~> 2.0.0)
+      nokogiri (>= 1.4.0)
+      nori (~> 2.0.3)
+      wasabi (~> 3.0.0)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.3.3)
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
+    slop (3.4.3)
+    soap4r (1.5.8)
+      httpclient (>= 2.1.1)
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     tilt (1.3.3)
+    wasabi (3.0.0)
+      httpi (~> 2.0)
+      nokogiri (>= 1.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  UPnP
   compass
   haml
+  pry
+  savon
   shotgun
   sinatra
   thin

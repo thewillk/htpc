@@ -1,12 +1,15 @@
 require 'sinatra'
 require 'haml'
 require 'sass'
+require 'pry'
 
 require './models/mac'
+require './models/wemo'
 
 configure do
   set :haml, {:format => :html5}
   set :scss, {:style => :compact, :debug_info => false}
+  @@wemo = WeMo
 end
 
 ALLOWED_APPS = ['Hulu Desktop', 'Plex', 'Sonos']
@@ -28,6 +31,18 @@ def modifiers_from_params
     modifiers[modifier] = true if params[modifier]=='true'
   end
   modifiers
+end
+
+get '/wemo/:name/:action' do
+  device = @@wemo.find_by_name params[:name]
+  if params[:action]=='on'
+    value = device.on! unless device.nil?
+  elsif params[:action]=='off'
+    value = device.off! unless device.nil?
+  elsif params[:action]=='status'
+    value = device.powered? unless device.nil?
+  end
+  value ? "ON" : "OFF"
 end
 
 get '/' do
