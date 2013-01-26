@@ -4,6 +4,8 @@
     'close_hulu': function(){ $.post('/close/hulu_desktop'); },
     'open_plex': function(){ $.post('/open/plex'); },
     'close_plex': function(){ $.post('/close/plex'); },
+    'subwoofer_on': function(){ $.post('/wemo_switch/subwoofer/on'); },
+    'subwoofer_off': function(){ $.post('/wemo_switch/subwoofer/off'); },
     'up_arrow': function(){ $.post('/keypress/up_arrow'); },
     'down_arrow': function(){ $.post('/keypress/down_arrow'); }
   };
