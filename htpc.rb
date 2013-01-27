@@ -52,6 +52,11 @@ get '/' do
   haml :index
 end
 
+post '/say/:string' do
+  # should sanitize input; easy injection attack here
+  Mac.say(params[:string])
+end
+
 post '/open/:id' do
   process_app params[:id] do |app_name|
     Mac.open_app app_name

@@ -1,5 +1,6 @@
 (function($){
   var ID_ACTIONS = {
+    'say_hello': function(){ $.post('/say/hello'); },
     'open_hulu': function(){ $.post('/open/hulu_desktop'); },
     'close_hulu': function(){ $.post('/close/hulu_desktop'); },
     'open_plex': function(){ $.post('/open/plex'); },

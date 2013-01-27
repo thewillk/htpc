@@ -43,6 +43,13 @@ module Mac
       run_apple_script [command]
     end
 
+    def say(string,options={})
+      voice = options[:voice] || 'Fred'
+      rate = options[:rate] || 300
+      rising_inflection = options[:rising_inflection] || true
+      %x[say '#{string}#{rising_inflection ? '?' : ''}' -v #{voice} -r #{rate}]
+    end
+
     def open_app(app_name)
       %x[open '/Applications/#{app_name}.app/']
     end
